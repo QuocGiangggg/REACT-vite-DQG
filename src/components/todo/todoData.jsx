@@ -6,6 +6,7 @@ const TodoData = (props) => {
     //     age: 23,
     //     data: {}
     // }
+    //destrucTuringOB
     const{name, age, data} = props;
     // const name = props.name;
     // const age = props.age;
@@ -15,6 +16,9 @@ const TodoData = (props) => {
         <div className='todo-data'>
             <div>My name is {name} </div>
             <div>Learning React</div>
+            <div>
+                {JSON.stringify(props.todoList)}
+            </div>
       </div>
     )
 }
