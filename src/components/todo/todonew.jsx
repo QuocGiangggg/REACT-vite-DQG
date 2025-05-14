@@ -7,7 +7,8 @@ const Todonew =(props) =>{
     const {addNewTodo} = props;
     //addNewTodo("Dang Quoc Giang")
     const handleClick =() => {
-       console.log(">>>Check", valueInput)
+       addNewTodo(valueInput)
+       setvalueInput("");
     }
     const handleonChange = (name) => {
         
@@ -18,6 +19,7 @@ const Todonew =(props) =>{
         <input 
             type ="text"
             onChange ={(evnet) => handleonChange(evnet.target.value)}
+            value={valueInput}
         />
         <button 
             style ={{cursor: "pointer"}}
