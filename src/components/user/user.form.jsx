@@ -18,6 +18,12 @@ const UserForm = () => {
         description: "Tạo user thành công !"
       })
       }
+      else{
+        notification.error({
+            message:"Error create user",
+            description:JSON.stringify(res.message)
+        })
+      }
     }
     return (
         <div className = "user-form" style ={{ margin:"20px 0"}}>
