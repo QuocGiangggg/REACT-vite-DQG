@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input, notification, Modal } from "antd";
 import { createUserAPI } from "../../serviecs/apiservices";
 
 
-const UpdateUserModal = () => {
+const UpdateUserModal = (props) => {
         const [fullName, setfullName] = useState("");
-        const [email, setEmail] = useState("");
-        const [password, setPassword] = useState("");
+        const [id, setId] = useState("");
         const [phone, setPhone] = useState("");
+
+        const { isModalUpdateOpen, SetIsModalUpdateOpen, dataUpdate, setDataUpdate} = props;
     
-        const[isModalOpen, setIsModalOpen] = useState(false);
-            const handleSubmitBtn = async ()=> {
+        useEffect(() =>{
+            console.log("check props", dataUpdate)
+            if(dataUpdate){
+                setfullName(dataUpdate.fullName);
+                setId(dataUpdate._id);
+                setPhone(dataUpdate.phone);
+            }
+        },[dataUpdate])
+        const handleSubmitBtn = async ()=> {
         const res = await createUserAPI(fullName, email, password, phone)
             if(res.data){
                     notification.success({
@@ -29,23 +37,30 @@ const UpdateUserModal = () => {
             }
 
         const resetAndCloseModal = () => {
-            setIsModalOpen(false);
+            SetIsModalUpdateOpen(false);
             setfullName("");
-            setEmail("");
-            setPassword("");
+            setId("");
             setPhone("");
+            setDataUpdate("");
           }
-
     return (
          <Modal
                 title="Update a User"
-                open={isModalOpen}
+                open={isModalUpdateOpen}
                 onOk={() => handleSubmitBtn()}
                 onCancel={() => resetAndCloseModal()}
                 maskClosable = {false}
                 okText={"Save"}
             >
                  <div style = {{display:"flex", gap: "15px", flexDirection: "column"}}>
+                    
+                     <div>
+                    <span>ID</span>
+                    <Input
+                        value={id}  
+                        disabled
+                    />
+                 </div>
                     <div>
                         <span>FullName</span>
                         <Input 
@@ -53,20 +68,6 @@ const UpdateUserModal = () => {
                             onChange={(event)=>{console.log(setfullName(event.target.value))}}
                         />
                  </div>
-                 <div>
-                    <span>Email</span>
-                    <Input
-                        value={email}
-                        onChange={(event) => {console.log(setEmail(event.target.value))}}
-                    />
-                 </div>
-                <div>
-                    <span>Password</span>
-                    <Input.Password
-                        value={password}
-                        onChange={(event) => {console.log(setPassword(event.target.value))}}
-                    />
-                </div>
                 <div>
                     <span>Phone</span>
                     <Input
