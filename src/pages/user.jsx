@@ -10,7 +10,6 @@ const UserPage=()=>{
     
         //empty array = run once
         useEffect(() => {
-            console.log("run effect:111 ")
             loadUser();
         }, []);
 
