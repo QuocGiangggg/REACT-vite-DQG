@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 
 const UserTable = (props) =>{
-    const { dataUsers } = props;
+    const { dataUsers, loadUser } = props;
 
     const[isModalUpdateOpen, SetIsModalUpdateOpen] = useState(false);
     const[dataUpdate, setDataUpdate] = useState(null);
@@ -64,6 +64,7 @@ const UserTable = (props) =>{
                 SetIsModalUpdateOpen={SetIsModalUpdateOpen}
                 dataUpdate = {dataUpdate}
                 setDataUpdate = {setDataUpdate}
+                loadUser = {loadUser}
             />
         </>
     )
