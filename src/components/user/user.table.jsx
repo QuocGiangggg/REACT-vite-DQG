@@ -1,4 +1,4 @@
-import { notification, Popconfirm, Space, Table, Tag } from 'antd';
+import { notification, Popconfirm,Table} from 'antd';
 //import { fetchAllUserAPI } from '../../serviecs/apiservices';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import UpdateUserModal from './update.user.modal';

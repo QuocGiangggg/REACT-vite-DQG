@@ -1,7 +1,7 @@
 // import './header.css';
 import { Menu } from 'antd';
 import { useState } from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { UsergroupAddOutlined, HomeOutlined, HeartOutlined } from '@ant-design/icons';
 
 const Header = () => {
