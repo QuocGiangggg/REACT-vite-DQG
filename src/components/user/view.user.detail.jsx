@@ -1,5 +1,6 @@
 import { Button, Drawer } from "antd";
 import { useState } from "react";
+import { handleUploadFile } from "../../serviecs/apiservices";
 
 const ViewUserDetail = (props) => {
     const{
@@ -21,10 +22,13 @@ const ViewUserDetail = (props) => {
             setSelectedFile(file);
             setPreview(URL.createObjectURL(file))
         }
-
-        
     }
-    console.log(">> check :", preview)
+        const handleUpdateUserAvatar = async() => {
+            //1: upload file
+            const resUpload = await handleUploadFile(selectedFile, "avatar")
+            console.log("check", resUpload)
+            //2: update user
+        }
     return( 
         <Drawer
             width={"40vw"} 
@@ -74,17 +78,24 @@ const ViewUserDetail = (props) => {
                         />
                         
                 </div>
-                {preview &&
+            {preview &&
+                <>
                  <div style = {{
                     marginTop: "10px",
                     height: "150px",
                     width:"150px",
-                    border :"1px solid #ccc"        
-                }} >
+                    marginBottom: "15px",       
+                     }} >
                     <img
                         style ={{ height: "100%", witdh: "100%", objectFit: "contain"}}
                         src ={preview}/>
-                </div> }
+                  </div>
+                     <Button 
+                     type="primary" 
+                     onClick={()=> handleUpdateUserAvatar()}
+                     >Save</Button>
+                </>
+             }
             </>
                 :
                 <>
